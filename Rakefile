@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "salty"
   gem.homepage = "http://github.com/alecbenzer/salty"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{salted hashing}
+  gem.description = %Q{stupid little gem for salted hashing}
   gem.email = "alecbenzer@gmail.com"
   gem.authors = ["Alec Benzer"]
   # dependencies defined in Gemfile

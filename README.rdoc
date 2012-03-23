@@ -1,6 +1,6 @@
 = salty
 
-Description goes here.
+stupid little gem for salted hashing
 
 == Contributing to salty
  
