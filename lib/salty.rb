@@ -1,7 +1,14 @@
 require 'digest/sha1'
 
+SALT_LENGTH=30
+ALPHA = ('A'..'Z').to_a + ('a'..'z').to_a + ('0'..'9').to_a
+
 def hash_fn(str)
   Digest::SHA1.hexdigest str
+end
+
+def generate_salt
+  (1..SALT_LENGTH).map{ALPHA.sample}.join
 end
 
 def salted_hash(str,salt)
@@ -12,14 +19,19 @@ def salted_hash(str,salt)
   res
 end
 
-alias :salty :salted_hash
+def salty(str)
+  salt = generate_salt
 
-def salty_eq(unhashed,hashed,salt)
-  hashed == salted_hash(unhashed,salt)
+  res = salted_hash(str,salt)
+
+  n = str.length
+  res[0...n] + salt + res[n..-1]
 end
 
-ALPHA = ('A'..'Z').to_a + ('a'..'z').to_a + ('0'..'9').to_a
+def salty_eq(unhashed,hashed)
+  n = unhashed.length
+  salt = hashed[n,SALT_LENGTH]
+  myhashed = hashed[0...n] + hashed[n+SALT_LENGTH..-1]
 
-def generate_salt(n=30)
-  (1..n).map{ALPHA.sample}.join
+  myhashed == salted_hash(unhashed,salt)
 end

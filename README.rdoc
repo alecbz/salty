@@ -19,14 +19,17 @@ and get the file locally. It's less than 1KB.
 
     require 'salty'  # you may need to do './salty' if you used wget
 
-    salt = generate_salt
-    password = salty("mypassword",salt) # iterative salted SHA1 hash
+    password = salty("mypassword") # iterative salted SHA1 hash
 
-    if salty_eq("mypassword",password,salt)
+    if salty_eq("mypassword",password)
       puts "You're logged in!"
     else
       puts "Wrong password"
     end
+
+A salt is generated and embeded in the output from (({salty("mypassword")})). (({salty_eq})) will then extract this salt. So there is no need to handle the salt yourself.
+
+Obviously, the order of arguments to (({salty_eq})) is important. The plain-text data must come first, followed by the previously-hashed data.
 
 == Contributing to salty
  

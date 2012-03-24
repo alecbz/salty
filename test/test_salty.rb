@@ -6,24 +6,23 @@ end
 
 class TestSalty < Test::Unit::TestCase
   context "test salt" do
-    should "basic" do
-      salt = generate_salt
-      hashed = salty("bob",salt)
-    end
-
     should "hash equality" do
-      str = random_string
-      salt = generate_salt
+      10.times do
+        str = random_string
 
-      assert_equal salted_hash(str,salt), salted_hash(str,salt)
+        hashed = salty(str)
+        assert salty_eq(str,hashed)
+      end
     end
 
-    should "hash equality method" do
-      str = random_string
-      salt = generate_salt
+    should "hash inequaliy" do
+      10.times do
+        str = random_string
+        hashed = salty(str)
 
-      hashed = salted_hash(str,salt)
-      assert salty_eq(str,hashed,salt)
+        other = random_string
+        assert(other == str || (not salty_eq(other,hashed)))
+      end
     end
   end
 end
