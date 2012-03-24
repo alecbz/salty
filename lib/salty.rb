@@ -4,7 +4,8 @@ SALT_LENGTH=30
 ALPHA = ('A'..'Z').to_a + ('a'..'z').to_a + ('0'..'9').to_a
 
 def hash_fn(str)
-  Digest::SHA1.hexdigest str
+  sha512 = Digest::SHA2.new(512)
+  sha512.hexdigest(str)
 end
 
 def generate_salt
