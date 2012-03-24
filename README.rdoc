@@ -1,6 +1,6 @@
 = salty
 
-stupid little gem for salted hashing
+stupid little gem for salted hashing (for, eg, user passwords)
 
 == Installation
 Just
@@ -13,14 +13,20 @@ If you want, you can also just
 
     $ wget https://raw.github.com/alecbenzer/salty/master/lib/salty.rb
 
-and get the file locally. It's less than 300 bytes.
+and get the file locally. It's less than 1KB.
 
 == Usage
 
     require 'salty'  # you may need to do './salty' if you used wget
 
-    salt = generate_salt  # generate a salt
-    salted_hash("mypassword",salt)  # => "edcaa79cf4f507cb43995d2e2616530b43236667"
+    salt = generate_salt
+    password = salty("mypassword",salt) # iterative salted SHA1 hash
+
+    if salty_eq("mypassword",password,salt)
+      puts "You're logged in!"
+    else
+      puts "Wrong password"
+    end
 
 == Contributing to salty
  

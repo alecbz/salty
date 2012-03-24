@@ -5,13 +5,20 @@ def hash_fn(str)
 end
 
 def salted_hash(str,salt)
+  res = str
   100.times do
-    str = hash_fn(str+salt)
+    res = hash_fn(res+salt)
   end
-  str
+  res
 end
 
-ALPHA = ('A'..'Z').to_a + ('a'..'z').to_a
+alias :salty :salted_hash
+
+def salty_eq(unhashed,hashed,salt)
+  hashed == salted_hash(unhashed,salt)
+end
+
+ALPHA = ('A'..'Z').to_a + ('a'..'z').to_a + ('0'..'9').to_a
 
 def generate_salt(n=30)
   (1..n).map{ALPHA.sample}.join
