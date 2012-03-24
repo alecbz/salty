@@ -1,7 +1,7 @@
 require 'helper'
 
 def random_string
-  generate_salt
+  Salty.generate_salt
 end
 
 class TestSalty < Test::Unit::TestCase
@@ -10,18 +10,18 @@ class TestSalty < Test::Unit::TestCase
       10.times do
         str = random_string
 
-        hashed = salty(str)
-        assert salty_eq(str,hashed)
+        hashed = Salty.hash(str)
+        assert Salty.check(str,hashed)
       end
     end
 
     should "hash inequaliy" do
       10.times do
         str = random_string
-        hashed = salty(str)
+        hashed = Salty.hash(str)
 
         other = random_string
-        assert(other == str || (not salty_eq(other,hashed)))
+        assert(other == str || (not Salty.check(other,hashed)))
       end
     end
   end
