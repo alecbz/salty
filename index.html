@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Salty : salted hashing" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Salty</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/alecbenzer/salty">Fork Me on GitHub</a>
+
+          <h1 id="project_title">Salty</h1>
+          <h2 id="project_tagline">salted hashing</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/alecbenzer/salty/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/alecbenzer/salty/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>Installation</h3>
+
+<p>Just</p>
+
+<p><code>$ gem install salty</code></p>
+
+<p>and you're good.</p>
+
+<p>If you want, you can also just</p>
+
+<p><code>$ wget <a href="https://raw.github.com/alecbenzer/salty/master/lib/salty.rb">https://raw.github.com/alecbenzer/salty/master/lib/salty.rb</a></code></p>
+
+<p>and get the file locally. It's less than 1KB.</p>
+
+<h3>Usage</h3>
+
+<pre><code>require 'salty'  # you may need to do './salty' if you used wget
+
+password = Salty.hash('mypassword') # iterative salted SHA512 hash
+
+if Salty.check('mypassword',password)
+  puts "You're logged in!"
+else
+  puts "Wrong password"
+end
+</code></pre>
+
+<p>A salt is generated and embeded in the output from <code>Salty.hash</code>. <code>Salty.check</code> will then extract this salt, so there is no need to handle the salt yourself.</p>
+
+<p>Obviously, the order of arguments to <code>Salty.check</code> is important. The plain-text data must come first, followed by the previously-hashed data.</p>
+
+<p>See more on <a href="https://github.com/alecbenzer/salty">github</a> and check out this <a href="http://alecbenzer.com/salty-hashing">blog post</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Salty maintained by <a href="https://github.com/alecbenzer">alecbenzer</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
