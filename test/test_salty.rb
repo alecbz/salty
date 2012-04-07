@@ -7,7 +7,7 @@ end
 class TestSalty < Test::Unit::TestCase
   context "test salt" do
     should "hash equality" do
-      10.times do
+      100.times do
         str = random_string
 
         hashed = Salty.hash(str)
@@ -16,7 +16,7 @@ class TestSalty < Test::Unit::TestCase
     end
 
     should "hash inequaliy" do
-      10.times do
+      100.times do
         str = random_string
         hashed = Salty.hash(str)
 
